@@ -4,13 +4,14 @@ import AppContext from "../context/appContext";
 import contentService from '../services/content';
 import searchClient from '../helpers/searchClient';
 import { getSession } from '../lib/getSession';
-function MyfontsApp({ Component, pageProps, staticContent }) {
+function MyfontsApp({ Component, pageProps, staticContent, user }) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page)
   return (
     <AppContext.Provider value={{
       searchClient: searchClient,
-      staticContent: staticContent
+      staticContent: staticContent,
+      user: user
     }}>
       {getLayout(<Component {...pageProps} />)}
     </AppContext.Provider>
@@ -31,12 +32,11 @@ MyfontsApp.getInitialProps = async (appContext) => {
   if (session.user === undefined) {
     session.user = {}
   }
-  // session.views = session.views ? session.views + 1 : 1;
-  console.log(session);
 
   return {
     ...appProps,
-    staticContent: content?.attributes ?? null
+    staticContent: content?.attributes ?? null,
+    user: session.user
   };
 };
 
