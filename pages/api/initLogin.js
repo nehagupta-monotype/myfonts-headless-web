@@ -1,8 +1,6 @@
-// import { getSession } from "../../lib/getSession";
-import { withSessionRoute, getSession } from "../../lib/withSession";
+import { withSessionRoute } from "../../lib/withSession";
 
 async function initLogin(req, res) {
-    // const session = await getSession(req, res);
     const session = req.session;
 
   if (session.user && session.user.data) {

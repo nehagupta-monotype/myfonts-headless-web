@@ -1,5 +1,4 @@
-// import { getSession } from "../../lib/getSession";
-import { withSessionRoute, getSession } from "../../lib/withSession";
+import { withSessionRoute } from "../../lib/withSession";
 
 import axios from "axios";
 
@@ -15,7 +14,6 @@ async function initSession(req, res) {
     );
     let userData = loginData.data.userData;
     // console.log(userData.access_token)
-    // const session = await getSession(req, res);
     if (userData.access_token && userData.id_token && loginData.data.multipassUrl) {
       req.session.userData = userData;
       await req.session.save();
