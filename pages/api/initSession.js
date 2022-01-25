@@ -1,14 +1,16 @@
 import { withSessionRoute } from "../../lib/withSession";
-
 import axios from "axios";
 
 async function initSession(req, res) {
   if (req.query.code) {
+    let host = req.headers.host;
+    let protocol = /^localhost(:\d+)?$/.test(host) ? 'http:' : 'https:'
+
     const loginData = await axios.post(
       `${process.env.AUTH0_REDIRECT_URI}/api/providelogindata`,
       {
         code: req.query.code,
-        final_uri: req.headers.host
+        final_uri: protocol + '//' + host
       },
       {headers: {"x-api-key": process.env.SESSION_X_API_KEY}}
     );

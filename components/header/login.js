@@ -4,13 +4,17 @@ import AppContext from "../../context/appContext";
 
 export default function Login({ data }) {
   const { staticContent, userData } = useContext(AppContext);
-  console.log("in header", userData)
+  let user;
+  if (userData && userData.id_token) {
+    user = JSON.parse(userData.id_token);
+  }
+  // console.log("User data", user)
   return (
     <div>
-      {userData && userData.access_token && userData.id_token &&
-        <div>Welcome user {userData.id_token}</div>
+      {user &&
+        <div>Welcome, {user.name} | <a href="/api/logout">Logout</a></div>
       }
-      {!(userData && userData.access_token) &&
+      {!user &&
         <a href="/api/initLogin">Login / Signup</a>
       }
     </div>

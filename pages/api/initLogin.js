@@ -1,8 +1,7 @@
 import { withSessionRoute } from "../../lib/withSession";
 
 async function initLogin(req, res) {
-    const session = req.session;
-
+  const session = req.session;
   if (session.user && session.user.data) {
     res.redirect('/');
     return;
