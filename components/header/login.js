@@ -3,13 +3,14 @@ import { useContext } from "react";
 import AppContext from "../../context/appContext";
 
 export default function Login({ data }) {
-  const { staticContent, user } = useContext(AppContext);
+  const { staticContent, userData } = useContext(AppContext);
+  console.log("in header", userData)
   return (
     <div>
-      {user && user.data &&
-        <div>Welcome user</div>
+      {userData && userData.access_token && userData.id_token &&
+        <div>Welcome user {userData.id_token}</div>
       }
-      {!user &&
+      {!(userData && userData.access_token) &&
         <a href="/api/initLogin">Login / Signup</a>
       }
     </div>

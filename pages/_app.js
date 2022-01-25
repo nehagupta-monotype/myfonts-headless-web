@@ -3,14 +3,16 @@ import App, { Container } from 'next/app';
 import AppContext from "../context/appContext";
 import contentService from '../services/content';
 import searchClient from '../helpers/searchClient';
-function MyfontsApp({ Component, pageProps, staticContent, user }) {
+import { getSession, withSessionSsr } from "../lib/withSession";
+
+function MyfontsApp({ Component, pageProps, staticContent, userData }) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page)
   return (
     <AppContext.Provider value={{
       searchClient: searchClient,
       staticContent: staticContent,
-      user: user
+      userData: userData
     }}>
       {getLayout(<Component {...pageProps} />)}
     </AppContext.Provider>
@@ -26,21 +28,19 @@ MyfontsApp.getInitialProps = async (appContext) => {
   // -- ctx --> err, req, res,
   const appProps = await App.getInitialProps(appContext); // Retrieves page's `getInitialProps`
   const content = await contentService.getHeader(); // Get content from CMS
-  // const session = await getSession(appContext.ctx.req, appContext.ctx.res);
-  const session = appContext.ctx
-  // console.log(session);
-  // console.log(session.id);
+  const session = await getSession(appContext.ctx.req, appContext.ctx.res);
+  console.log("In APP JS", session);
 
-  // if (session.user === undefined) {
-  //   session.user = {}
-  // }
-  // console.log("In APP JS", session)
-  console.log("In APP JS", session)
-
+  if (session.userData === undefined) {
+    session.userData = {};
+    const temp = withSessionSsr(function ({ctx}) {
+      console.log("in return", ctx)
+    })
+  }
   return {
     ...appProps,
     staticContent: content?.attributes ?? null,
-    user: session && session.user
+    userData: session.userData
   };
 };
 
