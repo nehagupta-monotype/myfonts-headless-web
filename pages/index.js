@@ -16,15 +16,6 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps = withSessionSsr(
-  async function getServerSideProps({ req }) {
-  const { userData } = req.session;
-  // console.log("in page", req.session);
-  return {
-    props: { user: req.session },
-  };
-});
-
 Home.getLayout = function getLayout(page) {
   return (
     <Layout>

@@ -19,7 +19,7 @@ async function initSession(req, res) {
     if (userData.access_token && userData.id_token && loginData.data.multipassUrl) {
       req.session.userData = userData;
       await req.session.save();
-      res.redirect(loginData.data.multipassUrl);
+      res.redirect(loginData.data.multipassUrl, 302);
     } else {
       res.status(404).json("Not found")
     }
