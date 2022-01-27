@@ -11,6 +11,9 @@ const constants = {
       homeStaffPicks: "homepage_staff_picks"
     }
   },
+  services: {
+    getSession: "/api/getSession",
+  }
 }
 
 export default constants;

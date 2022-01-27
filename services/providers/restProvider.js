@@ -15,10 +15,13 @@ function get(url) {
   return data;
 }
 
-function post(url, body) {
+function post(url, body, headers) {
   let data;
   const requestOptions = {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(body)
   };
   data = axios.post(url, requestOptions)
