@@ -8,15 +8,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.8",
     "algoliasearch": "^4.12.0",
     "axios": "^0.25.0",
     "cookie-signature": "^1.1.0",
+    "deepmerge": "^4.2.2",
+    "graphql": "^16.3.0",
     "iron-session": "^6.0.5",
-    "next": "12.0.8",
-    "next-session": "^4.0.4",
+    "lodash": "^4.17.21",
+    "next": "^12.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-instantsearch-dom": "^6.20.0"
+    "react-instantsearch-dom": "^6.21.1"
   },
   "devDependencies": {
     "eslint": "8.7.0",

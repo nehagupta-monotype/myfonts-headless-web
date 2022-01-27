@@ -1,4 +1,4 @@
-import Provider from "./provider";
+import Provider from "./providers/restProvider";
 import Constants from "../config/constants";
 
 const baseUrl = process.env.CMS_BASE_URL + "/jsonapi/node";

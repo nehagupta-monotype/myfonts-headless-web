@@ -3,9 +3,12 @@ import App, { Container } from 'next/app';
 import AppContext from "../context/appContext";
 import contentService from '../services/content';
 import searchClient from '../helpers/searchClient';
-import { getSession, withSessionSsr } from "../lib/withSession";
+import { getSession } from "../lib/withSession";
+import { ApolloProvider } from '@apollo/client'
+import { useApollo } from '../services/providers/graphProvider'
 
 function MyfontsApp({ Component, pageProps, staticContent, userData }) {
+  const apolloClient = useApollo(pageProps)
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page)
   return (
@@ -14,7 +17,9 @@ function MyfontsApp({ Component, pageProps, staticContent, userData }) {
       staticContent: staticContent,
       userData: userData
     }}>
-      {getLayout(<Component {...pageProps} />)}
+      <ApolloProvider client={apolloClient}>
+        {getLayout(<Component {...pageProps} />)}
+      </ApolloProvider>
     </AppContext.Provider>
   )
 }

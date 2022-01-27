@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css';
 import Layout from '../components/layouts/global';
 import StaffPicks from '../components/homepage/staffPicks';
-import { withSessionSsr} from "../lib/withSession";
+import PostList from '../components/header/miniCart'
 
 export default function Home() {
   return (
@@ -11,6 +11,7 @@ export default function Home() {
           Welcome to Myfonts.com
         </h1>
         <StaffPicks />
+        <PostList />
       </main>
     </div>
   )
