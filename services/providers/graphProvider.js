@@ -1,20 +1,35 @@
 import { useMemo } from 'react'
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { concatPagination } from '@apollo/client/utilities'
 import merge from 'deepmerge'
 import isEqual from 'lodash/isEqual'
+import { setContext } from '@apollo/client/link/context';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
-let apolloClient
+let apolloClient;
+
+const httpLink = createHttpLink({
+  uri: process.env.NEXT_PUBLIC_SHOPIFY_GRAPH_DOMAIN,
+  credentials: 'same-origin',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_SHOPIFY_GRAPH_API_KEY,
+    }
+  }
+});
 
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: new HttpLink({
-      uri: 'https://48p1r2roz4.sse.codesandbox.io', // Server URL (must be absolute)
-      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
-    }),
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache({
       typePolicies: {
         Query: {

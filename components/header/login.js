@@ -4,11 +4,7 @@ import AppContext from "../../context/appContext";
 
 export default function Login({ data }) {
   const { staticContent, userData } = useContext(AppContext);
-  let user;
-  if (userData && userData.id_token) {
-    user = JSON.parse(userData.id_token);
-  }
-  // console.log("User data", user)
+  let user = userData ? JSON.parse(userData) : null;
   return (
     <div>
       {user &&

@@ -34,7 +34,7 @@ MyfontsApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext); // Retrieves page's `getInitialProps`
   const content = await contentService.getHeader(); // Get content from CMS
   const session = await getSession(appContext.ctx.req, appContext.ctx.res);
-  console.log("In APP JS", session);
+  // console.log("In APP JS", session);
 
   if (session.userData === undefined) {
     session.userData = {};
@@ -42,7 +42,7 @@ MyfontsApp.getInitialProps = async (appContext) => {
   return {
     ...appProps,
     staticContent: content?.attributes ?? null,
-    userData: session.userData
+    userData: session.userData.id_token
   };
 };
 
