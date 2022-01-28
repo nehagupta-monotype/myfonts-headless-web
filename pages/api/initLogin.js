@@ -1,4 +1,4 @@
-import { withSessionRoute } from "../../lib/withSession";
+import { withSessionRoute } from "../../lib/session/withSession";
 
 async function initLogin(req, res) {
   const session = req.session;

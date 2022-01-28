@@ -1,4 +1,4 @@
-import { withSessionRoute } from "../../lib/withSession";
+import { withSessionRoute } from "../../lib/session/withSession";
 import axios from "axios";
 
 async function initSession(req, res) {

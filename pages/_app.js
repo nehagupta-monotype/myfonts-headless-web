@@ -3,7 +3,7 @@ import App, { Container } from 'next/app';
 import AppContext from "../context/appContext";
 import contentService from '../services/content';
 import searchClient from '../helpers/searchClient';
-import { getSession } from "../lib/withSession";
+import { getSession } from "../lib/session/withSession";
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../services/providers/graphProvider'
 
