@@ -11,7 +11,7 @@ export default function Header({ data }) {
     <header>
       {staticContent && staticContent.title}
       <Login/>
-      {/* <MiniCart /> */}
+      <MiniCart />
     </header>
   )
 }

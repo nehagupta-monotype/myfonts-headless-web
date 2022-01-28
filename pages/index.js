@@ -21,7 +21,7 @@ export default function Home() {
                 "lines": [
                   {
                     "quantity": 1,
-                    "merchandiseId": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC80MTQwMzA2MTM3MTA4Nw=="
+                    "merchandiseId": "gid://shopify/ProductVariant/41174061121743"
                   }
                 ],
                 "attributes": {
