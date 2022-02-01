@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import AppContext from "../../context/appContext";
 import Provider from "../../services/providers/restProvider";
 import Constants from "../../config/constants";
+import Link from 'next/link'
 
 export default function Login({ data }) {
   const { staticContent, userData } = useContext(AppContext);
@@ -23,10 +24,10 @@ export default function Login({ data }) {
   return (
     <div>
       {user &&
-        <div>Welcome, {user.name} | <a href="/api/logout">Logout</a></div>
+        <div>Welcome, {user.name} | <Link href="/api/logout">Logout</Link></div>
       }
       {!user &&
-        <a href="/api/initLogin">Login / Signup</a>
+        <Link href="/api/initLogin">Login / Signup</Link>
       }
     </div>
   )
