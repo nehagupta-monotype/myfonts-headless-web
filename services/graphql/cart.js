@@ -110,3 +110,136 @@ export const CREATE_CART = gql`
   }
 `;
 
+export const CREATE_CHECKOUT = gql`
+  mutation checkoutCreate($input: CheckoutCreateInput!) {
+    checkoutCreate(input: $input) {
+      checkout {
+        id
+        createdAt
+        updatedAt
+        webUrl
+        email
+        currencyCode
+        lineItemsSubtotalPrice {
+          amount
+          currencyCode
+        }
+        paymentDueV2 {
+          amount
+          currencyCode
+        }
+        subtotalPriceV2 {
+          amount
+          currencyCode
+        }
+        taxExempt
+        taxesIncluded
+        totalDuties {
+          amount
+          currencyCode
+        }
+        totalPriceV2 {
+          amount
+          currencyCode
+        }
+        totalTaxV2 {
+          amount
+          currencyCode
+        }
+        lineItems(first:10) {
+          edges {
+            node {
+              id
+              quantity
+              title
+              unitPrice {
+                amount
+                currencyCode
+              }
+              variant {
+                ... on ProductVariant {
+                  id
+                }
+              }
+            }
+          }
+
+        }
+        customAttributes {
+          key
+          value
+        }
+      }
+      checkoutUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const GET_CHECKOUT = gql`
+{
+  node (id: "gid://shopify/Checkout/32ed1b8cd7915ada399da7c9e3ef5340?key=11e63bca20a3143ea9f1b743ca0756c6") {
+    ... on Checkout {
+      id
+      createdAt
+      updatedAt
+      webUrl
+      email
+      currencyCode
+      lineItemsSubtotalPrice {
+        amount
+        currencyCode
+      }
+      paymentDueV2 {
+        amount
+        currencyCode
+      }
+      subtotalPriceV2 {
+        amount
+        currencyCode
+      }
+      taxExempt
+      taxesIncluded
+      totalDuties {
+        amount
+        currencyCode
+      }
+      totalPriceV2 {
+        amount
+        currencyCode
+      }
+      totalTaxV2 {
+        amount
+        currencyCode
+      }
+      lineItems(first:10) {
+        edges {
+          node {
+            id
+            quantity
+            title
+            unitPrice {
+              amount
+              currencyCode
+            }
+            variant {
+              ... on ProductVariant {
+                id
+              }
+            }
+          }
+        }
+
+      }
+      customAttributes {
+        key
+        value
+      }
+    }
+  }
+}
+`;
+
