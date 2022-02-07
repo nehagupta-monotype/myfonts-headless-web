@@ -7,11 +7,17 @@ import searchClient from '../helpers/searchClient';
 import { getSession } from "../lib/session/withSession";
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '../services/providers/graphProvider';
+import '../helpers/globalHelper';
 
 function MyfontsApp({ Component, pageProps, staticContent, userData, shopData }) {
   const apolloClient = useApollo(pageProps)
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page)
+  initShopData(shopData)
+  if (shopData?.paymentSettings) {
+    initAmountFormatter(shopData.paymentSettings.countryCode, shopData.paymentSettings.currencyCode);
+  }
+
   return (
     <AppContext.Provider value={{
       searchClient: searchClient,

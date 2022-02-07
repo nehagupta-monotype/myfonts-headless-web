@@ -11,10 +11,10 @@ export default function MiniCart() {
   return (
     <>
       {data && data.cart &&
-        <div>Cart amount is {data.cart.estimatedCost.totalAmount.amount}</div>
+        <div>Cart amount is {formatAmount(data.cart.estimatedCost.totalAmount.amount)}</div>
       }
       {data1.data && data1.data.node &&
-        <div>Checkout amount is {data1.data.node.totalPriceV2.amount}</div>
+        <div>Checkout amount is {formatAmount(data1.data.node.totalPriceV2.amount)}</div>
       }
     </>
   );
