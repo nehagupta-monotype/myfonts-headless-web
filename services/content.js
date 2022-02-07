@@ -3,9 +3,9 @@ import Constants from "../config/constants";
 
 const baseUrl = process.env.CMS_BASE_URL + "/jsonapi/node";
 
-const contentService = {};
+const contentServices = {};
 
-contentService.getHeader = async () => {
+contentServices.getHeader = async () => {
   const url = baseUrl + Constants.content.headerApi;
   try {
     const res = await Provider.get(url);
@@ -16,7 +16,7 @@ contentService.getHeader = async () => {
   }
 };
 
-contentService.getFooter = async () => {
+contentServices.getFooter = async () => {
   const url = baseUrl + Constants.content.footerApi;
   try {
     const res = await Provider.get(url);
@@ -28,4 +28,4 @@ contentService.getFooter = async () => {
 };
 
 
-export default contentService;
+export default contentServices;

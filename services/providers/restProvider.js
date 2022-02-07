@@ -15,16 +15,15 @@ function get(url) {
   return data;
 }
 
-function post(url, body, headers) {
+function post(url, body, header) {
   let data;
-  const requestOptions = {
+  const headers = {
     headers: {
-      ...headers,
+      ...header,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body)
   };
-  data = axios.post(url, requestOptions)
+  data = axios.post(url, JSON.stringify(body), headers)
     .then(handleResponse)
     .catch(handleError);
   return data;
