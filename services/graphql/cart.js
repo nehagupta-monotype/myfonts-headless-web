@@ -1,5 +1,4 @@
 import { gql, useMutation } from '@apollo/client'
-import { defaultFieldResolver } from 'graphql';
 
 export const GET_MINI_CART = gql`
 {

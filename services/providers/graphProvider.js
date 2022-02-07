@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, createHttpLink, InMemoryCache, useQuery, useMutation } from '@apollo/client'
 import { concatPagination } from '@apollo/client/utilities'
 import merge from 'deepmerge'
 import isEqual from 'lodash/isEqual'
@@ -85,4 +85,12 @@ export function useApollo(pageProps) {
   const state = pageProps[APOLLO_STATE_PROP_NAME]
   const store = useMemo(() => initializeApollo(state), [state])
   return store
+}
+
+export function useGPQuery(query, options) {
+  return useQuery(query, options);
+}
+
+export function useGPMutation(query, options) {
+  return useMutation(query, options);
 }

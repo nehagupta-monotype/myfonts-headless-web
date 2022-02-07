@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css';
 import Layout from '../components/layouts/global';
 import StaffPicks from '../components/homepage/staffPicks';
+import SpecialOffers from '../components/homepage/specialOffers';
 import { useMutation } from '@apollo/client';
 import { CREATE_CHECKOUT, CREATE_CART } from '../services/graphql/cart';
 
@@ -58,6 +59,7 @@ export default function Home() {
       >
         <button type="submit">Add To Cart</button>
       </form>
+        <SpecialOffers />
         <StaffPicks />
       </main>
     </div>
