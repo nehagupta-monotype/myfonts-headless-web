@@ -5,10 +5,10 @@ import contentServices from '../services/content';
 import shopifyServices from '../services/shopify';
 import searchClient from '../helpers/searchClient';
 import { getSession } from "../lib/session/withSession";
-import { ApolloProvider } from '@apollo/client'
-import { useApollo } from '../services/providers/graphProvider'
+import { ApolloProvider } from '@apollo/client';
+import { useApollo } from '../services/providers/graphProvider';
 
-function MyfontsApp({ Component, pageProps, staticContent, userData, shopifyData }) {
+function MyfontsApp({ Component, pageProps, staticContent, userData, shopData }) {
   const apolloClient = useApollo(pageProps)
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page)
@@ -17,7 +17,7 @@ function MyfontsApp({ Component, pageProps, staticContent, userData, shopifyData
       searchClient: searchClient,
       staticContent: staticContent,
       userData: userData,
-      shopifyData: shopifyData
+      shopData: shopData
     }}>
       <ApolloProvider client={apolloClient}>
         {getLayout(<Component {...pageProps} />)}
@@ -45,7 +45,7 @@ MyfontsApp.getInitialProps = async (appContext) => {
     ...appProps,
     staticContent: content?.attributes ?? null,
     userData: session.userData.id_token,
-    shopifyData: shopifyData
+    shopData: shopifyData?.shop
   };
 };
 
