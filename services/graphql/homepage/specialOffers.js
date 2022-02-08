@@ -26,7 +26,7 @@ import { gql, useMutation } from '@apollo/client'
 //   url: 'https://preprod-myfonts.myshopify.com/admin/api/2022-01/graphql.json',
 //   headers: {
 //     'Content-Type': 'application/json',
-//     'X-Shopify-Access-Token': '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',
+//     'X-Shopify-Access-Token': '',
 //   },
 //   data : data
 // };
