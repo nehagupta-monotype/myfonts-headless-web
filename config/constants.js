@@ -13,6 +13,9 @@ const constants = {
   },
   services: {
     getSession: "/api/getSession",
+  },
+  global: {
+    gtmId: process.env.NEXT_PUBLIC_GTM_ID
   }
 }
 

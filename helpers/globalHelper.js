@@ -1,5 +1,35 @@
 initShopData = (data) => {
-  shopData = data
+  shopData = data;
+  DataController = {
+    defaults: {
+      'eventCat': 'ecommerce',
+      'eventVal': 0,
+      'ecommerce': {
+        'currencyCode': shopData?.paymentSettings?.currencyCode,
+      }
+    },
+    push(eventData) {
+      try {
+        // find the dataLayer or create it
+        dataLayer = dataLayer || [];
+        // merge passed in data with defaults and push it to the dataLayer
+        dataLayer.push(Object.assign(this.defaults, eventData));
+      } catch (err) {
+        console.error('Failed push to dataLayer', err);
+      }
+    }
+  };
+  // Temporary hack to avoid GTM errors in popup.
+  noOverlayWorkaroundScript = `
+    window.addEventListener('error', event => {
+      event.stopImmediatePropagation()
+    })
+
+    window.addEventListener('unhandledrejection', event => {
+      event.stopImmediatePropagation()
+    })
+  `;
+
 }
 
 initAmountFormatter = (country, currency) => {
@@ -17,22 +47,3 @@ formatAmount = (amount, country) => {
   }
 }
 
-// DataController = {
-// 	defaults: {
-// 		'eventCat': 'ecommerce',
-// 		'eventVal': 0,
-// 		'ecommerce': {
-// 			'currencyCode': window.shopData?.paymentSettings?.currencyCode,
-// 		}
-// 	},
-// 	push(eventData) {
-// 		try {
-// 			// find the dataLayer or create it
-// 			window.dataLayer = window.dataLayer || [];
-// 			// merge passed in data with defaults and push it to the dataLayer
-// 			window.dataLayer.push($.extend(true, {}, this.defaults, eventData));
-// 		} catch (err) {
-// 			console.error('Failed push to dataLayer', err);
-// 		}
-// 	}
-// };

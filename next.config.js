@@ -2,7 +2,7 @@ module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
-    domains: ['localhost', 'render.myfonts.net'],
+    domains: ['localhost', 'render.myfonts.net', 'cdn.myfonts.net'],
   },
   async rewrites() {
     return [

@@ -1,6 +1,4 @@
-import { useContext, useState, useEffect } from "react";
-import { connectVoiceSearch } from "react-instantsearch-core";
-
+import Image from "next/image";
 import { GET_SPECIAL_OFFERS } from '../../services/graphql/homepage/specialOffers';
 import { useGPQuery } from "../../services/providers/graphProvider";
 
@@ -65,9 +63,8 @@ function CarousalCard({discountTag, productData}) {
   let startDate = discountData[3];
   let endDate = discountData[4];
   let createdDate = discountData[6];
-
-
   let familyUrl = productData?.mGlobalFamily?.value ? JSON.parse(productData.mGlobalFamily.value).url : "/";
+  // DataController.push("even check");
 
   // console.log("discountData", discountData);
   // console.log("percentage", percentage);
@@ -83,7 +80,7 @@ function CarousalCard({discountTag, productData}) {
   return (
     <div className="specialOffers__contentCard">
       <a className="specialOffers__contentLink" href={familyUrl}>
-        <img src="https://cdn.myfonts.net/cdn-cgi/image/width=720,height=360,fit=contain,format=auto/images/pim/10000/310437_dcd19c45c32e0c45db83d3fa9f242533.png" alt="Special offer on " {...productData.title} loading="lazy" width="219" height="110" />
+        <Image src="https://cdn.myfonts.net/cdn-cgi/image/width=720,height=360,fit=contain,format=auto/images/pim/10000/310437_dcd19c45c32e0c45db83d3fa9f242533.png" alt={`Special offer on ${productData.title}`} loading="lazy" width="219" height="110" />
         <p className="saletext">{type} | {percentage} % Off</p>
       </a>
     </div>
